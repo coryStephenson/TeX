@@ -1,0 +1,317 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{Sweave}
+\usepackage{courier}
+%\usepackage{caption}
+%\usepackage{pdfpages}
+%\usepackage{pdflscape}
+%\usepackage{amsmath}
+%\usepackage{url}
+%\usepackage{verbatim}
+%\usepackage[numbib,nottoc]{tocbibind}
+
+
+\begin{document}
+\input{eczema-concordance}
+
+\begin{titlepage}
+	\begin{center}
+	\includegraphics[width=\textwidth,scale=0.25]{"TECH_Logo_Main_TransparentBkgd_Purple".png} \\
+	[2mm]
+	\textsc{\Large math 3080: statistical methods ii} \\
+	[0.75cm]
+	\textsc{\Large instructor: dr. motoya machida} \\
+	[0.75cm]
+	\textsc{\Large article review of ``the odds ratio''} \\
+	[0.75cm]
+	\textsc{\Large authors: j martin bland \& douglas g altman} \\
+	[0.75cm]
+	\textsc{\Large by cory stephenson }\\
+	[0.75cm]
+	\textsc{\Large \today}\\
+	
+	
+	 \end{center}
+        
+\end{titlepage}
+
+\tableofcontents
+\thispagestyle{empty}
+\cleardoublepage
+
+\setcounter{page}{1}
+
+\section{Introduction}
+	\subsection{Statement of study objective}
+			
+This article is meant to explore a number of useful attributes that the odds ratio possesses as an indicator in the field of medical statistics. The authors demonstrate the effectiveness of the odds ratio using data from another article. Each step of the example is followed up by a corresponding axiom. The next paragraph is a passage taken from the article itself.   
+
+	\subsection{Background}\label{ssec:back}
+	
+In recent years odds ratios have become widely used in medical\\ reports---almost certainly some will appear in today's \textit{BMJ}. There are three reasons for this. Firstly, they provide an estimate (with confidence intervals) for the relationship between two binary (``yes or no") variables. Secondly, they enable us to examine the effects of other variables on that relationship, using\\ logistic regression. Thirdly, they have a special and very convenient interpretation in case-control studies (dealt with in a future note).\cite{BMJ:1}
+
+	\subsection{Method for data collection}
+	
+\begin{center}
+\underline{\text{\large{Abstract from the Article by Barbara Butland}\ \cite{Incidenc83:online}}}
+\end{center}
+
+\begin{flushleft}
+\textbf{\small{OBJECTIVE:}} To describe the incidence and prognosis of wheezing illness from birth to age 33 and the relation of incidence to perinatal, medical, social, environmental, and lifestyle factors.\\
+\vspace{1 pc}
+\textbf{\small{DESIGN:}} Prospective longitudinal study.\\
+\vspace{1 pc}
+\textbf{\small{SETTING:}} England, Scotland, and Wales.\\
+\vspace{1 pc}
+\textbf{\small{SUBJECTS:}} 18,559 people born on 3-9 March 1958. 5801 (31\%) contributed information at ages 7, 11, 16, 23, and 33 years. Attrition bias was evaluated using information on 14,571 (79\%) subjects.\\
+\vspace{1 pc}
+\textbf{\small{MAIN OUTCOME MEASURE:}} History of asthma, wheezy bronchitis, or wheezing obtained from interview with subjects' parents at ages 7, 11, and 16, and reported at interview by subjects at ages 23 and 33.\\
+\vspace{1 pc}
+\textbf{\small{OBJECTIVE:}} The cumulative incidence of wheezing illness was 18\% by age 7, 24\% by age 16, and 43\% by age 33. Incidence during childhood was strongly and independently associated with pneumonia, hay fever, and eczema. There were weaker independent associations with male sex, third trimester antepartum haemorrhage, whooping cough, recurrent abdominal pain, and migraine. Incidence from age 17 to 33 was associated strongly with active cigarette smoking and a history of hay fever. There were weaker independent associations with female sex, maternal albuminuria during pregnancy, and histories of eczema and migraine. Maternal smoking during pregnancy was weakly and inconsistently related to childhood wheezing but was a stronger and significant independent predictor of incidence after age 16. Among 880 subjects who developed asthma or wheezy bronchitis from birth to age 7, 50\% had attacks in the previous year at age 7; 18\% at 11, 10\% at 16, 10\% at 23, and 27\% at 33. Relapse at 33 after prolonged remission of childhood wheezing was more common among current smokers and atopic subjects.\\
+\vspace{1 pc}
+\textbf{\small{CONCLUSION:}} Atopy and active cigarette smoking are major influences on the incidence and recurrence of wheezing during adulthood.
+\end{flushleft}
+
+\section{Data Analysis}
+	\subsection{Methods for statistical investigation}
+	
+The data analysis section includes a confidence interval and alludes to the fact that a chi-square test was used in order to ascertain goodness of fit or independence. The data set in the paper conveys the association between hay fever and eczema in 11 year old children.\cite{BMJ:1}
+
+\begin{gather}\label{eq:1}
+Y=\ln{\left({\frac {p}{1-p}}\right)}=\alpha+\beta x\\[1 pc]
+\label{eq:2}
+x=\begin{cases} 1 & \text{Yes} \\ 0 & \text{No} \end{cases} \Rightarrow H_0 : \beta = 0 \Leftrightarrow H_0 : OR = 1 \qquad \text{where $\beta = \log{\text{OR}}$}
+\end{gather}
+
+\vspace{1 pc}
+ 
+Equation \ref{eq:1} represents the logistic transformation of the proportion $p$, where Y denotes the response variable, $\alpha$ denotes the intercept, $\beta$ denotes the slope coefficient (a.k.a. log odds ratio), and $x$ denotes the explanatory variable (a.k.a. covariate). Given that $x$ is a binary variable that assumes either a 0 or a 1, we are expected to predict the proportion $p$ (a.k.a. probability).
+
+\pagebreak
+
+Equation \ref{eq:2} represents either case of the binary variable $x$, which has a direct effect on the log odds ratio. The log odds ratio determines whether or not the null hypothesis should be rejected. The null hypothesis says that either a slope of 0 or an odds ratio of 1.0 indicates that the variables in question have no effect on each another.
+
+\vspace{1 pc}
+
+The authors mention that the chi-square test for goodness of fit or independence (otherwise denoted as $\chi^{2}$ test) can be called upon in order to obtain a p-value. The p-value allows the persons conducting the study to reach the decision of whether or not to reject the null hypothesis.
+
+\vspace{1 pc}
+
+	\subsection{Results of data analysis}
+
+\begin{table}[H]\centering
+\begin{tabular}{llll}
+       & \multicolumn{2}{c}{\textbf{Hay fever}}               &       \\ \cmidrule{2-3}
+\textbf{Eczema} & \qquad \textbf{Yes}           & \qquad \textbf{No}            & \qquad \textbf{Total} \\ \hline
+Yes    & \qquad 141           & \qquad 420           & \qquad 561   \\ \hline
+No     & \qquad 928           & \qquad 13525         & \qquad 14453 \\ \hline
+Total  & \qquad 1069          & \qquad 13945         & \qquad 15522 \\ \hline
+\end{tabular}
+\end{table}
+\vspace{1 pc}    
+		\subsubsection{Explanation of R output}
+		
+The first 2 x 2 matrix is stored in the data frame \texttt{Table}. The second 2 x 2 matrix has extracted the variable \texttt{observed} from the data frame \texttt{Table}. The third 2 x 2 matrix has extracted the variable \texttt{expected} from the data frame \texttt{Table}. Next, a p-value of \texttt{2.2e-16} is obtained from the chi-squared test. The logistic regression model is obtained from the next section of R code.
+
+$$Y=\alpha+\beta x=(-2.67926)+(1.58777) x$$ 
+
+The following section of code not only verifies the limits for the 95\% confidence interval mentioned in the article, but also provides the observed odds ratio, as well as the antilog of each limit that was also mention in the article (the confidence interval that corresponds to the observed odds ratio).  
+\pagebreak 	
+		\subsubsection{Output from R}
+\begin{Schunk}
+\begin{Soutput}
+       Yes    No
+Eczema 141   420
+None   928 13525
+\end{Soutput}
+\begin{Soutput}
+       Yes    No
+Eczema 141   420
+None   928 13525
+\end{Soutput}
+\begin{Soutput}
+              Yes         No
+Eczema   39.94332   521.0567
+None   1029.05668 13423.9433
+\end{Soutput}
+\begin{Soutput}
+	Pearson's Chi-squared test
+
+data:  Table
+X-squared = 285.96, df = 1, p-value < 2.2e-16
+\end{Soutput}
+\begin{Soutput}
+Call:
+glm(formula = Table ~ Group, family = binomial)
+
+Deviance Residuals: 
+[1]  0  0
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -2.67926    0.03393  -78.95   <2e-16 ***
+GroupEczema  1.58777    0.10308   15.40   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1.8560e+02  on 1  degrees of freedom
+Residual deviance: 3.1648e-12  on 0  degrees of freedom
+AIC: 19.103
+
+Number of Fisher Scoring iterations: 2
+\end{Soutput}
+\begin{Soutput}
+                2.5 %    97.5 %
+(Intercept) -2.746424 -2.613390
+GroupEczema  1.382971  1.787312
+\end{Soutput}
+\begin{Soutput}
+(Intercept) GroupEczema 
+ 0.06861368  4.89281866 
+\end{Soutput}
+\begin{Soutput}
+                 2.5 %    97.5 %
+(Intercept) 0.06415685 0.0732857
+GroupEczema 3.98672701 5.9733755
+\end{Soutput}
+\end{Schunk}
+
+\section{Conclusion}
+	\subsection{Null Hypothesis}
+	
+Given that the p-value obtained in the previous section is less than 0.05 and the odds ratio is not equal to 1, the null hypothesis $H_0 : \beta = 0 \Leftrightarrow H_0 : OR = 1$ should be rejected. The sample data does not support the claim that there is no association between hay fever and eczema in 11 year old children.
+
+	\subsection{What I Have Learned}
+	
+Prior to having written this article review, I had little to no knowledge of the purpose behind the odds ratio or why it was important. I am pleased to report that that is no longer the case. Throughout the process of writing this review, I have learned that the odds ratio differs from a probability in that the odds ratio is a ratio of probabilities, and that the words chance, probability, and proportion can be used interchangeably. Furthermore, the extent of probabilities is from\\ 0 $\leq$ $p$ $\leq$ 1, while the extent of odds is from 0 $\leq$ odds $\leq$ $\infty$. In addition, I also found the cited passage in Subsection \ref{ssec:back} helpful. 
+	
+	\subsection{What Makes the Odds Ratio Important}
+
+If we switch the order of the categories in the rows and the columns, we get the same odds ratio. If we switch the order for the rows only or for the columns only, we get the reciprocal of the odds ratio, 1/4.89=0.204. These properties make the odds ratio a useful indicator of the strength of the relationship.\cite{BMJ:1}
+
+\vspace{1 pc}
+
+The sample odds ratio is limited at the lower end, since it cannot be negative, but not at the upper end, and so has a skew distribution. The log odds ratio,\cite{BMJ:3} however, can take any value and has an approximately Normal distribution. It also has the useful property that if we reverse the order of the categories for one of the variables, we simply reverse the sign of the log odds ratio: log(4.89)=1.59, log(0.204)=\ -1.59.\cite{BMJ:1} 
+\iffalse	
+	\begin{figure}
+	\centering
+		\includegraphics{AM_Processes.png}
+	\caption{\label{fig:3d} Three-dimensional printing processes. From \cite{wong2012review}. Adapted from \cite{kruth1991material}.}
+	\end{figure}
+\fi
+\vspace{1 pc}
+	
+\iffalse
+	\begin{figure}[H]
+	\centering	
+		\includegraphics[scale=0.8]{Data_Flow_in_RP.png}
+		\caption{Data Flow in Rapid Prototyping\ \cite{wong2012review}}
+	\end{figure}
+\fi
+\vspace{1 pc}
+\iffalse
+	\begin{figure}
+	\centering
+		\includegraphics{Data_STL_File_Creation.PNG}
+		\caption{Data Flow in STL File Creation\ \cite{wong2012review}}
+	\end{figure}
+\fi		
+	\iffalse
+	\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{Data_Flow_in_RP.png}
+    \caption{Data Flow in\\ Rapid Prototyping\ \cite{wong2012review}}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{Data_STL_File_Creation.PNG}
+    \caption{Data Flow in\\
+     STL File Creation\ \cite{wong2012review}}
+  \end{subfigure}
+  \caption{Data Flow}
+  \label{fig:cad}
+	\end{figure}axis
+	\fi
+    \iffalse
+	\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{Block1_original.PNG}
+    \caption{Block}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{Block2_chamfer.png}
+    \caption{Block w/ chamfer}
+  \end{subfigure}
+  \caption{SolidWorks screenshots}
+  \label{fig:cad}
+	\fi
+
+
+	\iffalse
+	\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{Picture1.png}
+    \caption{Block}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{Picture2.png}
+    \caption{Block w/ chamfer}
+  \end{subfigure}
+  \caption{Slic3r screenshots}
+  \label{fig:stl}
+\end{figure}
+\fi
+	
+	\iffalse
+	\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{Picture4.png}
+    \caption{Block}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{Picture5.png}
+    \caption{Block w/ chamfer}
+  \end{subfigure}
+  \caption{GCODE ANALYZER screenshots}
+  \label{fig:gcode}
+\end{figure}
+\fi
+	
+	\iffalse
+	\begin{figure}[!h]
+	\centering
+		\includegraphics[width=0.5\textwidth]{Picture3.png}
+	\caption{\label{fig:dmt} Diffuse Merge Tool screenshots}
+	\end{figure}
+    \fi
+
+
+
+
+
+ 
+\nocite{*}
+\bibliographystyle{vancouver}
+%\bibliographystyle{acm}
+%\bibliographystyle{plain}
+%\bibliographystyle{alpha}
+
+
+\bibliography{oddsratio}
+\end{document}
+
+  
